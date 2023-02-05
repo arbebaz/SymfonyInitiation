@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %} {# héritage du fichier base.html.twig #}
+
+{% block title %} {{ parent() }} | Gestion des catégories{% endblock %}
+
+{% block h1 %}Gestion des catégories{% endblock %}
+
+{% block body %}
+
+<div class="row justify-content-end m-2">
+    <a class="btn btn-sucess p-2 col-md-3" href="{{ path('category_ajouter') }}">Ajouter une catégorie</a>
+</div>
+
+{# FORMULAIRE #}  
+
+{{ form_start(formCategory) }}
+
+    <div class="col-md-10 mx-auto">
+        {{ form_row(formCategory.name) }}
+    </div>
+
+    <div class="row justify-content-center">
+        <input type="submit" class="btn btn-sucess mt-3 col-md-6" value="Ajouter">
+    </div>
+
+{{ form_end(formCategory) }}
+
+{# fin FORMULAIRE #}  
+
+
+{# Notification #}  
+
+{% for notification in app.flashes('success') %}
+    <div class="alert alert-success col-md-6 mx-auto text-center disparition">{{ notification }}</div>
+{% endfor %}
+
+{# fin Notification #}
+
+{# tableau d'affichage des objets category #}
+
+{% if categories %}
+
+<table class="table table-white table-striped table-hover text-center">
+
+    <thead class="bg-dark text-white">
+    
+        <tr>
+            <th>ID Catégorie</th>
+            <th>Nom</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+    
+        {% for categorie in categories %}
+
+            <tr>
+            
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.name }}</td>
+                
+            </tr>
+    </tbody>
+</table>
+{% else %}
+
+    <h4 class="text-center mt-4 text-danger">IIl n'y a aucune catégorie pour le moment</h4>
+
+{% endif %}
+
+{% endblock %}

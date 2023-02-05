@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %} {# héritage du fichier base.html.twig #}
+
+{% block title %} {{ parent() }} | Ajouter une catégorie {% endblock %}
+
+{% block h1 %}Ajouter une catégorie{% endblock %}
+
+{% block body %}
+
+<div class="row justify-content-end">
+    <a class="btn btn-info p-2 col-md-3" href="{{ path('category_afficher') }}">Retour</a>
+</div>
+
+
+{% endblock %}
